@@ -1,0 +1,97 @@
+{% extends './snippets/appBar-and-bottomBar.html' %}
+
+{% comment %} Page title {% endcomment %}
+{% block title %}Diagnose result{% endblock %}
+
+{% comment %} appBar title {% endcomment %}
+{% block appBarTitle %}Diagnose result{% endblock %}
+
+{% comment %} included css and javascript {% endcomment %}
+{% block file %}
+{% load static %}
+<link rel='stylesheet' href="{% static 'css/diagnose-result/style.css' %}">
+{% endblock %}
+
+{% comment %} disable bottomBar {% endcomment %}
+{% block bottomBar %}{% endblock %}
+
+{% comment %} body content {% endcomment %}
+{% block content %}
+{% load static %}
+{% if user.diagnose_code == '1' %}
+<div class='body-container'>
+	<div class='body-grid'>
+		<div class='body-grid-item first-body-item'>
+			<span>The result is...</span>
+		</div>
+		<div class='body-grid-item'>
+			<div class='confirm-covid-box'>
+				<span>COVID-19 not likely</span>
+			</div>
+		</div>
+		<div class='body-grid-item'>
+			<div class='safety-grid'>
+				<div class='safety-grid-item first-safety-item'>
+					<img src="{% static 'images/diagnose-result/home-icon.png' %}">
+					<span>Stay home for days even if you test negative.</span>
+				</div>
+				<div class='safety-grid-item'>
+					<img src="{% static 'images/diagnose-result/social-distance-icon.png' %}">
+					<span>Stay away from people you lives, use seperate room if possible.</span>
+				</div>
+				<div class='safety-grid-item'>
+					<img src="{% static 'images/diagnose-result/no-working-icon.png' %}">
+					<span>Do not go to work, school or any places except to get medical care.</span>
+				</div>
+				<div class='safety-grid-item'>
+					<img src="{% static 'images/diagnose-result/masking-icon.png' %}">
+					<span>If you are sick don't forget to wear a mask over your nose and mouth.</span>
+				</div>
+				<div class='safety-grid-item last-safety-item'>
+					<img src="{% static 'images/diagnose-result/telephone-icon.png' %}">
+					<span>If you need support or help call any nearest Hospital for further action.</span>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{% elif user.diagnose_code == '2' %}
+<div class='body-container'>
+	<div class='body-grid'>
+		<div class='body-grid-item first-body-item'>
+			<span>The result is...</span>
+		</div>
+		<div class='body-grid-item'>
+			<div class='confirm-covid-box2'>
+				<span>COVID-19 likely</span>
+			</div>
+		</div>
+		<div class='body-grid-item'>
+			<div class='safety-grid'>
+				<div class='safety-grid-item first-safety-item'>
+					<img src="{% static 'images/diagnose-result/home-icon.png' %}">
+					<span>Go to the nearest clinic for further action.</span>
+				</div>
+				<div class='safety-grid-item'>
+					<img src="{% static 'images/diagnose-result/social-distance-icon.png' %}">
+					<span>Keep distancing yourself from others.</span>
+				</div>
+				<div class='safety-grid-item last-safety-item'>
+					<img src="{% static 'images/diagnose-result/no-working-icon.png' %}">
+					<span>Keep on wear a mask to avoid virus spread to others.</span>
+				</div>
+			</div>
+		</div>
+		<div class='body-grid-item'>
+			<iframe class="map" src="https://www.google.com/maps/d/u/0/embed?mid=1dMgdhqwuNxe3CN8K5VFe6yWqIyhvuNeG"></iframe>
+		</div>
+	</div>
+</div>
+{% endif %}
+<!-- Float action button - dashboard -->
+<div class='floataction-container'>
+	<a href="{% url 'dashboard' %}">
+		<span>RETURN TO DASHBOARD</span>
+	</a>
+</div>
+{% endblock %}
